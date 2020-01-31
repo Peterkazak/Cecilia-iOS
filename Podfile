@@ -9,6 +9,6 @@ target 'Cecilia' do
   pod 'Alamofire', '~> 5.0.0-rc.3'
   pod 'Starscream'
   pod 'SDWebImage', '~> 5.0'
-  pod 'MaLiang', '~> 1.1'
+  pod 'MaLiang', '~> 2.6'
 
 end

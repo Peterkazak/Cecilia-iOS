@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		D0A903DC23E4735B009F62B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0A903DB23E4735B009F62B4 /* Assets.xcassets */; };
 		D0A903DF23E4735B009F62B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0A903DD23E4735B009F62B4 /* LaunchScreen.storyboard */; };
 		D0A903E723E47856009F62B4 /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A903E623E47856009F62B4 /* DrawViewController.swift */; };
+		D0C47ACE23E47E74003C83EC /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C47ACD23E47E74003C83EC /* ViewControllerProtocol.swift */; };
+		D0C47AD123E4857E003C83EC /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C47AD023E4857E003C83EC /* pencil.png */; };
+		D0C47AD323E48CF5003C83EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C47AD223E48CF5003C83EC /* Constants.swift */; };
+		D0C47AD523E48D7A003C83EC /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C47AD423E48D7A003C83EC /* brush.png */; };
 		DF306C53216292BB8AC230DB /* Pods_Cecilia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF041D4A7F68FBAF604146 /* Pods_Cecilia.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +30,10 @@
 		D0A903DE23E4735B009F62B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0A903E023E4735B009F62B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0A903E623E47856009F62B4 /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
+		D0C47ACD23E47E74003C83EC /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
+		D0C47AD023E4857E003C83EC /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
+		D0C47AD223E48CF5003C83EC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D0C47AD423E48D7A003C83EC /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +62,6 @@
 				020045F0C3682BD7430AE043 /* Pods-Cecilia.debug.xcconfig */,
 				4045EDEA6A8FC2394A1402AD /* Pods-Cecilia.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -79,14 +86,26 @@
 		D0A903D123E47359009F62B4 /* Cecilia */ = {
 			isa = PBXGroup;
 			children = (
+				D0C47AD223E48CF5003C83EC /* Constants.swift */,
 				D0A903D223E47359009F62B4 /* AppDelegate.swift */,
 				D0A903D423E47359009F62B4 /* SceneDelegate.swift */,
 				D0A903E623E47856009F62B4 /* DrawViewController.swift */,
+				D0C47ACD23E47E74003C83EC /* ViewControllerProtocol.swift */,
 				D0A903DB23E4735B009F62B4 /* Assets.xcassets */,
 				D0A903DD23E4735B009F62B4 /* LaunchScreen.storyboard */,
 				D0A903E023E4735B009F62B4 /* Info.plist */,
+				D0C47ACF23E48576003C83EC /* Textures */,
 			);
 			path = Cecilia;
+			sourceTree = "<group>";
+		};
+		D0C47ACF23E48576003C83EC /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				D0C47AD023E4857E003C83EC /* pencil.png */,
+				D0C47AD423E48D7A003C83EC /* brush.png */,
+			);
+			path = Textures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +168,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0C47AD523E48D7A003C83EC /* brush.png in Resources */,
+				D0C47AD123E4857E003C83EC /* pencil.png in Resources */,
 				D0A903DF23E4735B009F62B4 /* LaunchScreen.storyboard in Resources */,
 				D0A903DC23E4735B009F62B4 /* Assets.xcassets in Resources */,
 			);
@@ -203,6 +224,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0C47AD323E48CF5003C83EC /* Constants.swift in Sources */,
+				D0C47ACE23E47E74003C83EC /* ViewControllerProtocol.swift in Sources */,
 				D0A903E723E47856009F62B4 /* DrawViewController.swift in Sources */,
 				D0A903D323E47359009F62B4 /* AppDelegate.swift in Sources */,
 				D0A903D523E47359009F62B4 /* SceneDelegate.swift in Sources */,

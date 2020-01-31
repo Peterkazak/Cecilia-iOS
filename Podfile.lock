@@ -1,14 +1,14 @@
 PODS:
   - Alamofire (5.0.0-rc.3)
-  - MaLiang (1.1.9)
-  - SDWebImage (5.4.0):
-    - SDWebImage/Core (= 5.4.0)
-  - SDWebImage/Core (5.4.0)
-  - Starscream (3.1.1)
+  - MaLiang (2.6.3)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
+  - Starscream (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
-  - MaLiang (~> 1.1)
+  - MaLiang (~> 2.6)
   - SDWebImage (~> 5.0)
   - Starscream
 
@@ -21,10 +21,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
-  MaLiang: 5532ad261a1967108030e82d46f3e67ee74f9082
-  SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
-  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  MaLiang: f6555c0b463fd161cc70e74da710e066ee40f228
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  Starscream: 04b26f02727e10a002e6b5d21b188ba0d049910b
 
-PODFILE CHECKSUM: c29480246544ecf831818d1de54e438df693adac
+PODFILE CHECKSUM: b9b792cdd1aa2af751fb9fe645f9479f5765abe6
 
 COCOAPODS: 1.8.4
