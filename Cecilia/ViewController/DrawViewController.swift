@@ -21,7 +21,7 @@ class DrawViewController: UIViewController {
     private var timerLabel = UILabel()
     
     var timer = Timer()
-    var timerCounter = 7
+    var timerCounter = 20
     
     // MARK: - ViewController override methods
     override func viewDidLoad() {
@@ -96,6 +96,15 @@ class DrawViewController: UIViewController {
         }
     }
     
+    private func gameOver() {
+        let viewController = ResultViewController()
+        viewController.delegate = self
+        viewController.lhsImage = originalImage.image!
+        viewController.rhsImage = UIImage.init(data: UIImage.blendImages(originalImage.image!, canvas.snapshot()!)!)!
+        viewController.modalPresentationStyle = .overFullScreen
+        present(viewController, animated: true, completion: nil)
+    }
+        
     // MARK: - Event handlers
     @objc private func brushSizeSliderAction(_ sender: Slider) {
         self.brush?.pointSize = CGFloat(brushSizeSlider.value * 100.0)
@@ -106,15 +115,8 @@ class DrawViewController: UIViewController {
             timerCounter -= 1
             timerLabel.text = "\(timerCounter) sec"
         } else {
-            canvas.clear()
-            saveImageAction()
-            timer.invalidate()
+            gameOver()
         }
-    }
-    
-    @objc private func saveImageAction() {
-        let imagetest = UIImage.init(data: UIImage.blendImages(originalImage.image!, canvas.snapshot()!)!)
-        self.originalImage.image = imagetest
     }
 }
 
@@ -145,11 +147,20 @@ extension DrawViewController: SubviewProtocol {
         
         view.insertSubview(timerLabel, at: 2)
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
-        timerLabel.topAnchor.constraint(equalTo: brushSizeSlider.bottomAnchor, constant: 10.0).isActive = true
+        timerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10.0).isActive = true
         timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         timerLabel.widthAnchor.constraint(equalToConstant: (SCREEN_WIDTH/2.5).rounded()).isActive = true
         timerLabel.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
         self.view.layoutIfNeeded()
+    }
+}
+
+extension DrawViewController: ResultViewControllerDelegate {
+    func restartGame() {
+        self.canvas.clear()
+        self.timer.invalidate()
+        self.timerCounter = 20
+        self.timerLabel.text = "\(self.timerCounter) sec"
     }
 }
