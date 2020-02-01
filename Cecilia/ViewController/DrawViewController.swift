@@ -26,11 +26,10 @@ class DrawViewController: UIViewController {
     // MARK: - ViewController override methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "bg_01")
         
         NotificationCenter.default.addObserver(self, selector: #selector(setBrushColor(notification:)), name: NSNotification.Name(rawValue: "setPaletteItem"), object: nil)
         
-        timerView.backgroundColor = .cyan
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounterHandler), userInfo: nil, repeats: true)
         
         originalImage = UIImageView()
@@ -115,7 +114,7 @@ class DrawViewController: UIViewController {
     @objc private func timerCounterHandler() {
         if timerCounter > 0 {
             timerCounter -= 1
-            timerView.label.text = "\(timerCounter) sec"
+            timerView.updateTimer(value: timerCounter)
         } else {
             gameOver()
         }
@@ -162,6 +161,6 @@ extension DrawViewController: ResultViewControllerDelegate {
         self.canvas.clear()
         self.timer.invalidate()
         self.timerCounter = 20
-        self.timerView.label.text = "\(self.timerCounter) sec"
+        self.timerView.updateTimer(value: timerCounter)
     }
 }

@@ -10,12 +10,14 @@ import UIKit
 
 class TimerView: UIView {
     
-    public let slider = UISlider()
-    public var label = UILabel()
+    private let slider = Slider()
+    private var label = UILabel()
     
     // MARK: - UIView override methods
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        
+        backgroundColor = .clear
         
         subviewsSetup()
         
@@ -24,35 +26,37 @@ class TimerView: UIView {
         label.text = "20 сек."
         label.textColor = UIColor(named: "label_color_01")
         label.font = UIFont(name: "ComicSansMS-Bold", size: 36)
-        
-        slider.setThumbImage(UIImage(), for: .normal)
-        slider.maximumTrackTintColor = .blue
-        slider.minimumTrackTintColor = .green
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - TimerView methods
+    public func updateTimer(value: Int) {
+        slider.value = 0.05 * Float(value)
+        label.text = "\(value) сек."
     }
 }
 
 extension TimerView: SubviewProtocol {
     func subviewsSetup() {
         self.widthAnchor.constraint(equalToConstant: SCREEN_WIDTH).isActive = true
-        self.heightAnchor.constraint(equalToConstant: 90.0).isActive = true
+        self.heightAnchor.constraint(equalToConstant: 75.0).isActive = true
         
         self.insertSubview(slider, at: 1)
         slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
-        slider.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        slider.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        slider.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        slider.widthAnchor.constraint(equalToConstant: (SCREEN_WIDTH/2).rounded()).isActive = true
+        slider.heightAnchor.constraint(equalToConstant: 22.0).isActive = true
+        slider.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        slider.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10.0).isActive = true
         
         self.insertSubview(label, at: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: slider.topAnchor).isActive = true
+        label.bottomAnchor.constraint(equalTo: slider.topAnchor, constant: -10.0).isActive = true
         label.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 36.0).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 34.0).isActive = true
         
         layoutIfNeeded()
     }
