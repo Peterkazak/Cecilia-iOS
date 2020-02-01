@@ -22,6 +22,8 @@
 		D0EC8A2E23E5264300D248D1 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A2D23E5264300D248D1 /* ColorCollectionViewCell.swift */; };
 		D0EC8A3023E55EFA00D248D1 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A2F23E55EFA00D248D1 /* Slider.swift */; };
 		D0EC8A3323E56E9500D248D1 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A3223E56E9500D248D1 /* UIImage.swift */; };
+		D0EC8A3523E58E2200D248D1 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A3423E58E2200D248D1 /* ResultViewController.swift */; };
+		D0EC8A3723E5904200D248D1 /* ImageComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A3623E5904200D248D1 /* ImageComparisonView.swift */; };
 		DF306C53216292BB8AC230DB /* Pods_Cecilia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF041D4A7F68FBAF604146 /* Pods_Cecilia.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,8 @@
 		D0EC8A2D23E5264300D248D1 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0EC8A2F23E55EFA00D248D1 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 		D0EC8A3223E56E9500D248D1 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		D0EC8A3423E58E2200D248D1 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		D0EC8A3623E5904200D248D1 /* ImageComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComparisonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				D0A903E623E47856009F62B4 /* DrawViewController.swift */,
+				D0EC8A3423E58E2200D248D1 /* ResultViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				D0EC8A2B23E520A300D248D1 /* PaletteView.swift */,
 				D0EC8A2D23E5264300D248D1 /* ColorCollectionViewCell.swift */,
 				D0EC8A2F23E55EFA00D248D1 /* Slider.swift */,
+				D0EC8A3623E5904200D248D1 /* ImageComparisonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,9 +304,11 @@
 				D0EC8A3023E55EFA00D248D1 /* Slider.swift in Sources */,
 				D0A903D323E47359009F62B4 /* AppDelegate.swift in Sources */,
 				D0A903D523E47359009F62B4 /* SceneDelegate.swift in Sources */,
+				D0EC8A3723E5904200D248D1 /* ImageComparisonView.swift in Sources */,
 				D0EC8A2E23E5264300D248D1 /* ColorCollectionViewCell.swift in Sources */,
 				D0EC8A2C23E520A300D248D1 /* PaletteView.swift in Sources */,
 				D0EC8A2A23E5143100D248D1 /* AuthService.swift in Sources */,
+				D0EC8A3523E58E2200D248D1 /* ResultViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
