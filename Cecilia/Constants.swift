@@ -20,3 +20,7 @@ var SCREEN_WIDTH: CGFloat {
 var SCREEN_HEIGHT: CGFloat {
     get { return UIScreen.main.bounds.height }
 }
+
+var CANVAS_SIZE: CGSize {
+    get { return CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT/1.5).rounded()) }
+}

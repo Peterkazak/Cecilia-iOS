@@ -14,13 +14,14 @@ import ColorThiefSwift
 class DrawViewController: UIViewController {
     
     private var originalImage = UIImageView()
-    private let canvas = Canvas(frame: CGRect(origin: .zero, size: SCREEN_SIZE))
+    private let canvas = Canvas(frame: CGRect(origin: .zero, size: CANVAS_SIZE))
     private let palette = PaletteView(frame: .zero)
     private let brushSizeSlider = Slider()
     private var brush: Brush?
     private var timerLabel = UILabel()
     
-    var timerCounter = 20
+    var timer = Timer()
+    var timerCounter = 7
     
     // MARK: - ViewController override methods
     override func viewDidLoad() {
@@ -59,7 +60,7 @@ class DrawViewController: UIViewController {
         brushSizeSlider.setValue(0.5, animated: false)
         brushSizeSlider.addTarget(self, action: #selector(brushSizeSliderAction(_:)), for: .valueChanged)
         
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounterHandler), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounterHandler), userInfo: nil, repeats: true)
         timerLabel.textAlignment = .center
         timerLabel.font = UIFont.boldSystemFont(ofSize: 24.0)
         timerLabel.text = "\(timerCounter) sec"
@@ -104,7 +105,16 @@ class DrawViewController: UIViewController {
         if timerCounter > 0 {
             timerCounter -= 1
             timerLabel.text = "\(timerCounter) sec"
+        } else {
+            canvas.clear()
+            saveImageAction()
+            timer.invalidate()
         }
+    }
+    
+    @objc private func saveImageAction() {
+        let imagetest = UIImage.init(data: UIImage.blendImages(originalImage.image!, canvas.snapshot()!)!)
+        self.originalImage.image = imagetest
     }
 }
 
@@ -114,12 +124,12 @@ extension DrawViewController: SubviewProtocol {
         view.insertSubview(originalImage, at: 0)
         originalImage.translatesAutoresizingMaskIntoConstraints = false
         originalImage.widthAnchor.constraint(equalToConstant: SCREEN_WIDTH).isActive = true
-        originalImage.heightAnchor.constraint(equalToConstant: (SCREEN_WIDTH + 200.0).rounded()).isActive = true
+        originalImage.heightAnchor.constraint(equalToConstant: CANVAS_SIZE.height).isActive = true
         originalImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         originalImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         
         view.insertSubview(canvas, at: 1)
-        canvas.frame = view.frame
+        canvas.frame.origin = .zero
         
         view.insertSubview(palette, at: 2)
         palette.translatesAutoresizingMaskIntoConstraints = false
