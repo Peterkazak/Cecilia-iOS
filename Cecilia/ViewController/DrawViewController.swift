@@ -18,6 +18,9 @@ class DrawViewController: UIViewController {
     private let palette = PaletteView(frame: .zero)
     private let brushSizeSlider = Slider()
     private var brush: Brush?
+    private var timerLabel = UILabel()
+    
+    var timerCounter = 20
     
     // MARK: - ViewController override methods
     override func viewDidLoad() {
@@ -56,9 +59,15 @@ class DrawViewController: UIViewController {
         brushSizeSlider.setValue(0.5, animated: false)
         brushSizeSlider.addTarget(self, action: #selector(brushSizeSliderAction(_:)), for: .valueChanged)
         
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounterHandler), userInfo: nil, repeats: true)
+        timerLabel.textAlignment = .center
+        timerLabel.font = UIFont.boldSystemFont(ofSize: 24.0)
+        timerLabel.text = "\(timerCounter) sec"
+        
         subviewsSetup()
         brushSetup()
     }
+    
     
     @objc func setBrushColor(notification: NSNotification) {
         if let item = notification.userInfo?["paletteItem"] as? UIColor {
@@ -90,6 +99,13 @@ class DrawViewController: UIViewController {
     @objc private func brushSizeSliderAction(_ sender: Slider) {
         self.brush?.pointSize = CGFloat(brushSizeSlider.value * 100.0)
     }
+    
+    @objc private func timerCounterHandler() {
+        if timerCounter > 0 {
+            timerCounter -= 1
+            timerLabel.text = "\(timerCounter) sec"
+        }
+    }
 }
 
 // MARK: - SubviewProtocol protocol implementation
@@ -116,6 +132,13 @@ extension DrawViewController: SubviewProtocol {
         brushSizeSlider.heightAnchor.constraint(equalToConstant: 50.0).isActive  = true
         brushSizeSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         brushSizeSlider.topAnchor.constraint(equalTo: palette.bottomAnchor).isActive = true
+        
+        view.insertSubview(timerLabel, at: 2)
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        timerLabel.topAnchor.constraint(equalTo: brushSizeSlider.bottomAnchor, constant: 10.0).isActive = true
+        timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        timerLabel.widthAnchor.constraint(equalToConstant: (SCREEN_WIDTH/2.5).rounded()).isActive = true
+        timerLabel.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
         self.view.layoutIfNeeded()
     }

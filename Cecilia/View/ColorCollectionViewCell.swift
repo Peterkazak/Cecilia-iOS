@@ -11,7 +11,7 @@ import UIKit
 class ColorCollectionViewCell: UICollectionViewCell {
     
     static let identifier: String = "ColorCollectionViewCell"
-    static let width: CGFloat = (SCREEN_WIDTH / 7).rounded() - 7
+    static let width: CGFloat = (SCREEN_WIDTH / 7).rounded() - 7 // Magic numbers C:
     static let height: CGFloat = (SCREEN_WIDTH / 7).rounded() - 7
     
     // MARK: - UICollectionViewCell override methods
