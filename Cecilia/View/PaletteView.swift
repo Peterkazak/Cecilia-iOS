@@ -11,18 +11,18 @@ import UIKit
 class PaletteView: UIView {
     
     public var colors: [UIColor] = []
-    public let collectionView: UICollectionView!
+    private let collectionView: UICollectionView!
     private let flowLayout = UICollectionViewFlowLayout()
     
     // MARK: - UIView override methods
     override init(frame: CGRect) {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        for _ in 0..<6 { self.colors.append(UIColor.white) }
+        for _ in 0..<7 { self.colors.append(UIColor.lightGray) }
         
         super.init(frame: frame)
-    
-        backgroundColor = .clear
         
+        backgroundColor = .white
+
         subviewsSetup()
         
         flowLayout.scrollDirection = .horizontal
@@ -35,11 +35,13 @@ class PaletteView: UIView {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.isMultipleTouchEnabled = false
         collectionView.isScrollEnabled = false
+        collectionView.backgroundColor = .white
         collectionView.register(ColorCollectionViewCell.self, forCellWithReuseIdentifier: ColorCollectionViewCell.identifier)
         collectionView.reloadData()
     }
@@ -49,6 +51,9 @@ class PaletteView: UIView {
     }
         
     // MARK: - PaletteView methods
+    public func reloadColors() -> Void {
+        self.collectionView.reloadData()
+    }
 }
 
 // MARK: - SubviewProtocol protocol implementation
@@ -57,12 +62,12 @@ extension PaletteView: SubviewProtocol {
         self.addSubview(collectionView)
         
         self.widthAnchor.constraint(equalToConstant: SCREEN_WIDTH).isActive = true
-        self.heightAnchor.constraint(equalToConstant: SCREEN_WIDTH/CGFloat(colors.count).rounded()).isActive = true
+        self.heightAnchor.constraint(equalToConstant: (SCREEN_WIDTH/6.5).rounded()).isActive = true
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 7.0).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: self.topAnchor, constant: 3.5).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -7.0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3.5).isActive = true
         
         layoutIfNeeded()
@@ -93,7 +98,7 @@ extension PaletteView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
     
     // MARK: UICollectionViewDelegateFlowLayout Delegate methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0.0, left: -3.5, bottom: 0.0, right: 0.0)
+        return UIEdgeInsets(top: 0.0, left: 3.5, bottom: 0.0, right: 0.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

@@ -17,19 +17,15 @@ class ColorCollectionViewCell: UICollectionViewCell {
     // MARK: - UICollectionViewCell override methods
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         clipsToBounds = false
-        backgroundColor = .lightGray
-        
+        backgroundColor = .white
+        layer.cornerRadius = (ColorCollectionViewCell.width/2).rounded()
         subviewsSetup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - ColorCollectionViewCell methods
-    public func setColor(color: UIColor) -> Void { self.backgroundColor = color }
 }
 
 // MARK: - SubviewProtocol protocol implementation

@@ -14,9 +14,9 @@ import ColorThiefSwift
 class DrawViewController: UIViewController {
     
     private var originalImage = UIImageView()
-//    private let canvas = ScrollableCanvas(frame: CGRect(origin: .zero, size: SCREEN_SIZE))
     private let canvas = Canvas(frame: CGRect(origin: .zero, size: SCREEN_SIZE))
     private let palette = PaletteView(frame: .zero)
+    private let brushSizeSlider = Slider()
     private var brush: Brush?
     
     // MARK: - ViewController override methods
@@ -41,18 +41,21 @@ class DrawViewController: UIViewController {
             } else {
                 self.originalImage.image = image
                 
-                guard let colors = ColorThief.getPalette(from: image!, colorCount: 7, quality: 1, ignoreWhite: true) else {
+                guard let colors = ColorThief.getPalette(from: image!, colorCount: self.palette.colors.count, quality: 1, ignoreWhite: false) else {
                     return
                 }
                 
-                for i in 0..<6 { self.palette.colors[i] = colors[i].makeUIColor() }
+                for i in 0..<7 { self.palette.colors[i] = colors[i].makeUIColor() }
                 
-                self.palette.collectionView.reloadData()
+                self.palette.reloadColors()
             }
         }
         
         canvas.backgroundColor = .clear
-                
+        
+        brushSizeSlider.setValue(0.5, animated: false)
+        brushSizeSlider.addTarget(self, action: #selector(brushSizeSliderAction(_:)), for: .valueChanged)
+        
         subviewsSetup()
         brushSetup()
     }
@@ -74,10 +77,9 @@ class DrawViewController: UIViewController {
             brush = try registerBrush(with: "brush")
             brush!.rotation = .ahead
             brush!.pointSize = 35.0
-            brush!.pointStep = 2.0
+            brush!.pointStep = 1.0
             brush!.forceSensitive = 0.2
-            brush!.color =  UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
-            brush!.forceOnTap = 0.5
+            brush!.forceOnTap = 1.2
             brush!.use()
         } catch {
             print("Error: Can't register brush")
@@ -85,6 +87,9 @@ class DrawViewController: UIViewController {
     }
     
     // MARK: - Event handlers
+    @objc private func brushSizeSliderAction(_ sender: Slider) {
+        self.brush?.pointSize = CGFloat(brushSizeSlider.value * 100.0)
+    }
 }
 
 // MARK: - SubviewProtocol protocol implementation
@@ -104,6 +109,13 @@ extension DrawViewController: SubviewProtocol {
         palette.translatesAutoresizingMaskIntoConstraints = false
         palette.topAnchor.constraint(equalTo: originalImage.bottomAnchor).isActive = true
         palette.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        
+        view.insertSubview(brushSizeSlider, at: 2)
+        brushSizeSlider.translatesAutoresizingMaskIntoConstraints = false
+        brushSizeSlider.widthAnchor.constraint(equalToConstant: SCREEN_WIDTH - 40.0).isActive  = true
+        brushSizeSlider.heightAnchor.constraint(equalToConstant: 50.0).isActive  = true
+        brushSizeSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        brushSizeSlider.topAnchor.constraint(equalTo: palette.bottomAnchor).isActive = true
         
         self.view.layoutIfNeeded()
     }

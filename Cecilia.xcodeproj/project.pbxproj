@@ -20,6 +20,7 @@
 		D0EC8A2A23E5143100D248D1 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A2923E5143100D248D1 /* AuthService.swift */; };
 		D0EC8A2C23E520A300D248D1 /* PaletteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A2B23E520A300D248D1 /* PaletteView.swift */; };
 		D0EC8A2E23E5264300D248D1 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A2D23E5264300D248D1 /* ColorCollectionViewCell.swift */; };
+		D0EC8A3023E55EFA00D248D1 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A2F23E55EFA00D248D1 /* Slider.swift */; };
 		DF306C53216292BB8AC230DB /* Pods_Cecilia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF041D4A7F68FBAF604146 /* Pods_Cecilia.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		D0EC8A2923E5143100D248D1 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		D0EC8A2B23E520A300D248D1 /* PaletteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteView.swift; sourceTree = "<group>"; };
 		D0EC8A2D23E5264300D248D1 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0EC8A2F23E55EFA00D248D1 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,17 +96,17 @@
 		D0A903D123E47359009F62B4 /* Cecilia */ = {
 			isa = PBXGroup;
 			children = (
+				D0A903DB23E4735B009F62B4 /* Assets.xcassets */,
+				D0A903DD23E4735B009F62B4 /* LaunchScreen.storyboard */,
+				D0A903E023E4735B009F62B4 /* Info.plist */,
 				D0A903D223E47359009F62B4 /* AppDelegate.swift */,
 				D0C47AD223E48CF5003C83EC /* Constants.swift */,
 				D0A903D423E47359009F62B4 /* SceneDelegate.swift */,
 				D0EC8A2323E5123400D248D1 /* API */,
+				D0EC8A2623E5124F00D248D1 /* Protocol */,
 				D0EC8A2423E5123D00D248D1 /* Model */,
 				D0EC8A2523E5124300D248D1 /* View */,
 				D0EC8A2223E5122700D248D1 /* ViewController */,
-				D0EC8A2623E5124F00D248D1 /* Protocol */,
-				D0A903DB23E4735B009F62B4 /* Assets.xcassets */,
-				D0A903DD23E4735B009F62B4 /* LaunchScreen.storyboard */,
-				D0A903E023E4735B009F62B4 /* Info.plist */,
 				D0C47ACF23E48576003C83EC /* Textures */,
 			);
 			path = Cecilia;
@@ -148,6 +150,7 @@
 			children = (
 				D0EC8A2B23E520A300D248D1 /* PaletteView.swift */,
 				D0EC8A2D23E5264300D248D1 /* ColorCollectionViewCell.swift */,
+				D0EC8A2F23E55EFA00D248D1 /* Slider.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				D0C47ACE23E47E74003C83EC /* SubviewProtocol.swift in Sources */,
 				D0EC8A2823E5140600D248D1 /* GameSessionService.swift in Sources */,
 				D0A903E723E47856009F62B4 /* DrawViewController.swift in Sources */,
+				D0EC8A3023E55EFA00D248D1 /* Slider.swift in Sources */,
 				D0A903D323E47359009F62B4 /* AppDelegate.swift in Sources */,
 				D0A903D523E47359009F62B4 /* SceneDelegate.swift in Sources */,
 				D0EC8A2E23E5264300D248D1 /* ColorCollectionViewCell.swift in Sources */,
