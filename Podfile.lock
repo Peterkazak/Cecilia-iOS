@@ -1,30 +1,38 @@
 PODS:
   - Alamofire (5.0.0-rc.3)
+  - ColorThiefSwift (0.4.0)
   - MaLiang (2.6.3)
   - SDWebImage (5.5.2):
     - SDWebImage/Core (= 5.5.2)
   - SDWebImage/Core (5.5.2)
   - Starscream (4.0.0)
+  - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0-rc.3)
+  - ColorThiefSwift (>= 0.4.0)
   - MaLiang (~> 2.6)
   - SDWebImage (~> 5.0)
-  - Starscream
+  - Starscream (~> 4.0.0)
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - ColorThiefSwift
     - MaLiang
     - SDWebImage
     - Starscream
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: ca8c0de6906873be89d6deec5c8de279e00bf872
+  ColorThiefSwift: 643bcd1364b4736ebcd190259646918ca17e8802
   MaLiang: f6555c0b463fd161cc70e74da710e066ee40f228
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   Starscream: 04b26f02727e10a002e6b5d21b188ba0d049910b
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: b9b792cdd1aa2af751fb9fe645f9479f5765abe6
+PODFILE CHECKSUM: 7e0aa89825bead401beab0d48af29ef76943f393
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0.beta.2

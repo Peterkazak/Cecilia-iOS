@@ -7,8 +7,10 @@ target 'Cecilia' do
 
   # Pods for Cecilia
   pod 'Alamofire', '~> 5.0.0-rc.3'
-  pod 'Starscream'
+  pod 'Starscream', '~> 4.0.0'
+  pod 'SwiftKeychainWrapper'
   pod 'SDWebImage', '~> 5.0'
   pod 'MaLiang', '~> 2.6'
+  pod 'ColorThiefSwift', '>= 0.4.0'
 
 end

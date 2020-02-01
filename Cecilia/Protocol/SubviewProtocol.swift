@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol ViewControllerProtocol {
+protocol SubviewProtocol {
     func subviewsSetup()
 }
