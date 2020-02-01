@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Slider: UISlider {
+class Slider1: UISlider {
     
     fileprivate let slider = UIImage(named: "Slider")
     

@@ -13,12 +13,12 @@ import ColorThiefSwift
 
 class DrawViewController: UIViewController {
     
+    private var timerView = TimerView()
     private var originalImage = UIImageView()
     private let canvas = Canvas(frame: CGRect(origin: .zero, size: CANVAS_SIZE))
     private let palette = PaletteView(frame: .zero)
-    private let brushSizeSlider = Slider()
+    private let brushSizeSwitch = BrushSizeSwitch(frame: .zero)
     private var brush: Brush?
-    private var timerLabel = UILabel()
     
     var timer = Timer()
     var timerCounter = 20
@@ -29,6 +29,9 @@ class DrawViewController: UIViewController {
         view.backgroundColor = .white
         
         NotificationCenter.default.addObserver(self, selector: #selector(setBrushColor(notification:)), name: NSNotification.Name(rawValue: "setPaletteItem"), object: nil)
+        
+        timerView.backgroundColor = .cyan
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounterHandler), userInfo: nil, repeats: true)
         
         originalImage = UIImageView()
         originalImage.backgroundColor = .clear
@@ -57,13 +60,7 @@ class DrawViewController: UIViewController {
         
         canvas.backgroundColor = .clear
         
-        brushSizeSlider.setValue(0.5, animated: false)
-        brushSizeSlider.addTarget(self, action: #selector(brushSizeSliderAction(_:)), for: .valueChanged)
-        
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounterHandler), userInfo: nil, repeats: true)
-        timerLabel.textAlignment = .center
-        timerLabel.font = UIFont.boldSystemFont(ofSize: 24.0)
-        timerLabel.text = "\(timerCounter) sec"
+        brushSizeSwitch.addTarget(self, action: #selector(brushSizeSwitchAction(_:)), for: .valueChanged)
         
         subviewsSetup()
         brushSetup()
@@ -106,14 +103,19 @@ class DrawViewController: UIViewController {
     }
         
     // MARK: - Event handlers
-    @objc private func brushSizeSliderAction(_ sender: Slider) {
-        self.brush?.pointSize = CGFloat(brushSizeSlider.value * 100.0)
+    @objc private func brushSizeSwitchAction(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0: self.brush?.pointSize = 8.0
+        case 1: self.brush?.pointSize = 22.0
+        case 2: self.brush?.pointSize = 45.0
+        default: break
+        }
     }
     
     @objc private func timerCounterHandler() {
         if timerCounter > 0 {
             timerCounter -= 1
-            timerLabel.text = "\(timerCounter) sec"
+            timerView.label.text = "\(timerCounter) sec"
         } else {
             gameOver()
         }
@@ -123,12 +125,18 @@ class DrawViewController: UIViewController {
 // MARK: - SubviewProtocol protocol implementation
 extension DrawViewController: SubviewProtocol {
     func subviewsSetup() {
+        
+        view.insertSubview(timerView, at: 0)
+        timerView.translatesAutoresizingMaskIntoConstraints = false
+        timerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        timerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         view.insertSubview(originalImage, at: 0)
         originalImage.translatesAutoresizingMaskIntoConstraints = false
         originalImage.widthAnchor.constraint(equalToConstant: SCREEN_WIDTH).isActive = true
         originalImage.heightAnchor.constraint(equalToConstant: CANVAS_SIZE.height).isActive = true
         originalImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        originalImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        originalImage.topAnchor.constraint(equalTo: timerView.bottomAnchor).isActive = true
         
         view.insertSubview(canvas, at: 1)
         canvas.frame.origin = .zero
@@ -138,19 +146,12 @@ extension DrawViewController: SubviewProtocol {
         palette.topAnchor.constraint(equalTo: originalImage.bottomAnchor).isActive = true
         palette.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
-        view.insertSubview(brushSizeSlider, at: 2)
-        brushSizeSlider.translatesAutoresizingMaskIntoConstraints = false
-        brushSizeSlider.widthAnchor.constraint(equalToConstant: SCREEN_WIDTH - 40.0).isActive  = true
-        brushSizeSlider.heightAnchor.constraint(equalToConstant: 50.0).isActive  = true
-        brushSizeSlider.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        brushSizeSlider.topAnchor.constraint(equalTo: palette.bottomAnchor).isActive = true
-        
-        view.insertSubview(timerLabel, at: 2)
-        timerLabel.translatesAutoresizingMaskIntoConstraints = false
-        timerLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10.0).isActive = true
-        timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        timerLabel.widthAnchor.constraint(equalToConstant: (SCREEN_WIDTH/2.5).rounded()).isActive = true
-        timerLabel.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        view.insertSubview(brushSizeSwitch, at: 2)
+        brushSizeSwitch.translatesAutoresizingMaskIntoConstraints = false
+        brushSizeSwitch.topAnchor.constraint(equalTo: palette.bottomAnchor).isActive = true
+        brushSizeSwitch.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        brushSizeSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        brushSizeSwitch.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
         self.view.layoutIfNeeded()
     }
@@ -161,6 +162,6 @@ extension DrawViewController: ResultViewControllerDelegate {
         self.canvas.clear()
         self.timer.invalidate()
         self.timerCounter = 20
-        self.timerLabel.text = "\(self.timerCounter) sec"
+        self.timerView.label.text = "\(self.timerCounter) sec"
     }
 }

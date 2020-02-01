@@ -11,7 +11,6 @@
 		D0A903D523E47359009F62B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A903D423E47359009F62B4 /* SceneDelegate.swift */; };
 		D0A903DC23E4735B009F62B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0A903DB23E4735B009F62B4 /* Assets.xcassets */; };
 		D0A903DF23E4735B009F62B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0A903DD23E4735B009F62B4 /* LaunchScreen.storyboard */; };
-		D0A903E723E47856009F62B4 /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A903E623E47856009F62B4 /* DrawViewController.swift */; };
 		D0C47ACE23E47E74003C83EC /* SubviewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C47ACD23E47E74003C83EC /* SubviewProtocol.swift */; };
 		D0C47AD123E4857E003C83EC /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C47AD023E4857E003C83EC /* pencil.png */; };
 		D0C47AD323E48CF5003C83EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C47AD223E48CF5003C83EC /* Constants.swift */; };
@@ -24,6 +23,11 @@
 		D0EC8A3323E56E9500D248D1 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A3223E56E9500D248D1 /* UIImage.swift */; };
 		D0EC8A3523E58E2200D248D1 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A3423E58E2200D248D1 /* ResultViewController.swift */; };
 		D0EC8A3723E5904200D248D1 /* ImageComparisonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A3623E5904200D248D1 /* ImageComparisonView.swift */; };
+		D0EC8A3D23E5B13300D248D1 /* BrushSizeSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A3C23E5B13300D248D1 /* BrushSizeSwitch.swift */; };
+		D0EC8A3F23E5B1F200D248D1 /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A3E23E5B1F200D248D1 /* DrawViewController.swift */; };
+		D0EC8A4123E5B9C400D248D1 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A4023E5B9C400D248D1 /* TimerView.swift */; };
+		D0EC8A4323E5C0CC00D248D1 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EC8A4223E5C0CC00D248D1 /* Color.xcassets */; };
+		D0EC8A4623E5C3B000D248D1 /* ComicSansMS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0EC8A4523E5C3B000D248D1 /* ComicSansMS-Bold.ttf */; };
 		DF306C53216292BB8AC230DB /* Pods_Cecilia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF041D4A7F68FBAF604146 /* Pods_Cecilia.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +41,6 @@
 		D0A903DB23E4735B009F62B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0A903DE23E4735B009F62B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0A903E023E4735B009F62B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0A903E623E47856009F62B4 /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
 		D0C47ACD23E47E74003C83EC /* SubviewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubviewProtocol.swift; sourceTree = "<group>"; };
 		D0C47AD023E4857E003C83EC /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
 		D0C47AD223E48CF5003C83EC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -50,6 +53,11 @@
 		D0EC8A3223E56E9500D248D1 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		D0EC8A3423E58E2200D248D1 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		D0EC8A3623E5904200D248D1 /* ImageComparisonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComparisonView.swift; sourceTree = "<group>"; };
+		D0EC8A3C23E5B13300D248D1 /* BrushSizeSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushSizeSwitch.swift; sourceTree = "<group>"; };
+		D0EC8A3E23E5B1F200D248D1 /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
+		D0EC8A4023E5B9C400D248D1 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		D0EC8A4223E5C0CC00D248D1 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		D0EC8A4523E5C3B000D248D1 /* ComicSansMS-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ComicSansMS-Bold.ttf"; path = "../../../../../Downloads/ComicSansMS-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,13 +110,15 @@
 		D0A903D123E47359009F62B4 /* Cecilia */ = {
 			isa = PBXGroup;
 			children = (
-				D0EC8A3123E56E8700D248D1 /* extension */,
-				D0A903DB23E4735B009F62B4 /* Assets.xcassets */,
-				D0A903DD23E4735B009F62B4 /* LaunchScreen.storyboard */,
 				D0A903E023E4735B009F62B4 /* Info.plist */,
+				D0A903DB23E4735B009F62B4 /* Assets.xcassets */,
+				D0EC8A4223E5C0CC00D248D1 /* Color.xcassets */,
+				D0A903DD23E4735B009F62B4 /* LaunchScreen.storyboard */,
 				D0A903D223E47359009F62B4 /* AppDelegate.swift */,
 				D0C47AD223E48CF5003C83EC /* Constants.swift */,
 				D0A903D423E47359009F62B4 /* SceneDelegate.swift */,
+				D0EC8A4423E5C39B00D248D1 /* Fonts */,
+				D0EC8A3123E56E8700D248D1 /* extension */,
 				D0EC8A2323E5123400D248D1 /* API */,
 				D0EC8A2623E5124F00D248D1 /* Protocol */,
 				D0EC8A2423E5123D00D248D1 /* Model */,
@@ -131,8 +141,8 @@
 		D0EC8A2223E5122700D248D1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D0A903E623E47856009F62B4 /* DrawViewController.swift */,
 				D0EC8A3423E58E2200D248D1 /* ResultViewController.swift */,
+				D0EC8A3E23E5B1F200D248D1 /* DrawViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -160,6 +170,8 @@
 				D0EC8A2D23E5264300D248D1 /* ColorCollectionViewCell.swift */,
 				D0EC8A2F23E55EFA00D248D1 /* Slider.swift */,
 				D0EC8A3623E5904200D248D1 /* ImageComparisonView.swift */,
+				D0EC8A3C23E5B13300D248D1 /* BrushSizeSwitch.swift */,
+				D0EC8A4023E5B9C400D248D1 /* TimerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,6 +190,14 @@
 				D0EC8A3223E56E9500D248D1 /* UIImage.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		D0EC8A4423E5C39B00D248D1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D0EC8A4523E5C3B000D248D1 /* ComicSansMS-Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +260,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EC8A4623E5C3B000D248D1 /* ComicSansMS-Bold.ttf in Resources */,
 				D0C47AD523E48D7A003C83EC /* brush.png in Resources */,
 				D0C47AD123E4857E003C83EC /* pencil.png in Resources */,
+				D0EC8A4323E5C0CC00D248D1 /* Color.xcassets in Resources */,
 				D0A903DF23E4735B009F62B4 /* LaunchScreen.storyboard in Resources */,
 				D0A903DC23E4735B009F62B4 /* Assets.xcassets in Resources */,
 			);
@@ -296,11 +318,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EC8A4123E5B9C400D248D1 /* TimerView.swift in Sources */,
 				D0C47AD323E48CF5003C83EC /* Constants.swift in Sources */,
+				D0EC8A3D23E5B13300D248D1 /* BrushSizeSwitch.swift in Sources */,
 				D0EC8A3323E56E9500D248D1 /* UIImage.swift in Sources */,
 				D0C47ACE23E47E74003C83EC /* SubviewProtocol.swift in Sources */,
+				D0EC8A3F23E5B1F200D248D1 /* DrawViewController.swift in Sources */,
 				D0EC8A2823E5140600D248D1 /* GameSessionService.swift in Sources */,
-				D0A903E723E47856009F62B4 /* DrawViewController.swift in Sources */,
 				D0EC8A3023E55EFA00D248D1 /* Slider.swift in Sources */,
 				D0A903D323E47359009F62B4 /* AppDelegate.swift in Sources */,
 				D0A903D523E47359009F62B4 /* SceneDelegate.swift in Sources */,

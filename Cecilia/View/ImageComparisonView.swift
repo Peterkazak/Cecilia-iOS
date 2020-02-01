@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class ImageComparisonView: UIView {
+class ImageComparisonView: UIView {
     
     fileprivate var leadingConstraint: NSLayoutConstraint!
     fileprivate var originRect: CGRect!
