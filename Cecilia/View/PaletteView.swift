@@ -21,7 +21,7 @@ class PaletteView: UIView {
         
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = .clear
 
         subviewsSetup()
         
@@ -41,7 +41,7 @@ class PaletteView: UIView {
         collectionView.contentInsetAdjustmentBehavior = .automatic
         collectionView.isMultipleTouchEnabled = false
         collectionView.isScrollEnabled = false
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.register(ColorCollectionViewCell.self, forCellWithReuseIdentifier: ColorCollectionViewCell.identifier)
         collectionView.reloadData()
     }

@@ -28,6 +28,7 @@
 		D0EC8A4123E5B9C400D248D1 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A4023E5B9C400D248D1 /* TimerView.swift */; };
 		D0EC8A4323E5C0CC00D248D1 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EC8A4223E5C0CC00D248D1 /* Color.xcassets */; };
 		D0EC8A4623E5C3B000D248D1 /* ComicSansMS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0EC8A4523E5C3B000D248D1 /* ComicSansMS-Bold.ttf */; };
+		D0EC8A4823E5D01F00D248D1 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A4723E5D01F00D248D1 /* PictureView.swift */; };
 		DF306C53216292BB8AC230DB /* Pods_Cecilia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF041D4A7F68FBAF604146 /* Pods_Cecilia.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		D0EC8A4023E5B9C400D248D1 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		D0EC8A4223E5C0CC00D248D1 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		D0EC8A4523E5C3B000D248D1 /* ComicSansMS-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ComicSansMS-Bold.ttf"; path = "../../../../../Downloads/ComicSansMS-Bold.ttf"; sourceTree = "<group>"; };
+		D0EC8A4723E5D01F00D248D1 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				D0EC8A3623E5904200D248D1 /* ImageComparisonView.swift */,
 				D0EC8A3C23E5B13300D248D1 /* BrushSizeSwitch.swift */,
 				D0EC8A4023E5B9C400D248D1 /* TimerView.swift */,
+				D0EC8A4723E5D01F00D248D1 /* PictureView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				D0EC8A4123E5B9C400D248D1 /* TimerView.swift in Sources */,
 				D0C47AD323E48CF5003C83EC /* Constants.swift in Sources */,
 				D0EC8A3D23E5B13300D248D1 /* BrushSizeSwitch.swift in Sources */,
+				D0EC8A4823E5D01F00D248D1 /* PictureView.swift in Sources */,
 				D0EC8A3323E56E9500D248D1 /* UIImage.swift in Sources */,
 				D0C47ACE23E47E74003C83EC /* SubviewProtocol.swift in Sources */,
 				D0EC8A3F23E5B1F200D248D1 /* DrawViewController.swift in Sources */,

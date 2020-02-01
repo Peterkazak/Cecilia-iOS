@@ -14,12 +14,13 @@ import ColorThiefSwift
 class DrawViewController: UIViewController {
     
     private var timerView = TimerView()
-    private var originalImage = UIImageView()
     private let canvas = Canvas(frame: CGRect(origin: .zero, size: CANVAS_SIZE))
     private let palette = PaletteView(frame: .zero)
     private let brushSizeSwitch = BrushSizeSwitch(frame: .zero)
     private var brush: Brush?
     
+    private let pictureView = PictureView()
+
     var timer = Timer()
     var timerCounter = 20
     
@@ -32,20 +33,14 @@ class DrawViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounterHandler), userInfo: nil, repeats: true)
         
-        originalImage = UIImageView()
-        originalImage.backgroundColor = .clear
-        originalImage.alpha = 0.8
-        originalImage.contentMode = .scaleAspectFill
-        originalImage.clipsToBounds = true
-        
         let url = URL(string: "https://www.artsalonholland.nl/uploads/illustraties-groot/1eef1ea5-8e64-4f62-b8de-da8ec1600d27/3012930105/Johannes-vermeer-het-meisje-met-de-parel-art-salon-holland.jpg")!
         
-        originalImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        originalImage.sd_setImage(with: url) { (image, error, cache, urls) in
+        pictureView.pictureImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        pictureView.pictureImageView.sd_setImage(with: url) { (image, error, cache, urls) in
             if error != nil {
-                self.originalImage.image = image
+                self.pictureView.pictureImageView.image = image
             } else {
-                self.originalImage.image = image
+                self.pictureView.pictureImageView.image = image
                 
                 guard let colors = ColorThief.getPalette(from: image!, colorCount: self.palette.colors.count, quality: 1, ignoreWhite: false) else {
                     return
@@ -95,8 +90,8 @@ class DrawViewController: UIViewController {
     private func gameOver() {
         let viewController = ResultViewController()
         viewController.delegate = self
-        viewController.lhsImage = originalImage.image!
-        viewController.rhsImage = UIImage.init(data: UIImage.blendImages(originalImage.image!, canvas.snapshot()!)!)!
+        viewController.lhsImage = pictureView.pictureImageView.image!
+        viewController.rhsImage = UIImage.init(data: UIImage.blendImages(pictureView.pictureImageView.image!, canvas.snapshot()!)!)!
         viewController.modalPresentationStyle = .overFullScreen
         present(viewController, animated: true, completion: nil)
     }
@@ -130,29 +125,29 @@ extension DrawViewController: SubviewProtocol {
         timerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         timerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        view.insertSubview(originalImage, at: 0)
-        originalImage.translatesAutoresizingMaskIntoConstraints = false
-        originalImage.widthAnchor.constraint(equalToConstant: SCREEN_WIDTH).isActive = true
-        originalImage.heightAnchor.constraint(equalToConstant: CANVAS_SIZE.height).isActive = true
-        originalImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        originalImage.topAnchor.constraint(equalTo: timerView.bottomAnchor).isActive = true
-        
-        view.insertSubview(canvas, at: 1)
-        canvas.frame.origin = .zero
-        
-        view.insertSubview(palette, at: 2)
+        view.insertSubview(palette, at: 1)
         palette.translatesAutoresizingMaskIntoConstraints = false
-        palette.topAnchor.constraint(equalTo: originalImage.bottomAnchor).isActive = true
+        palette.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         palette.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
         view.insertSubview(brushSizeSwitch, at: 2)
         brushSizeSwitch.translatesAutoresizingMaskIntoConstraints = false
-        brushSizeSwitch.topAnchor.constraint(equalTo: palette.bottomAnchor).isActive = true
-        brushSizeSwitch.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        brushSizeSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        brushSizeSwitch.bottomAnchor.constraint(equalTo: palette.topAnchor, constant: -10.0).isActive = true
+        brushSizeSwitch.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20.0).isActive = true
+        brushSizeSwitch.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.0).isActive = true
         brushSizeSwitch.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
+        view.insertSubview(pictureView, at: 3)
+        pictureView.translatesAutoresizingMaskIntoConstraints = false
+        pictureView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        pictureView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        pictureView.topAnchor.constraint(equalTo: timerView.bottomAnchor, constant: 10.0).isActive = true
+        pictureView.bottomAnchor.constraint(equalTo: brushSizeSwitch.topAnchor , constant: -15.0).isActive = true
+        
         self.view.layoutIfNeeded()
+        
+        pictureView.insertSubview(canvas, at: 1)
+        canvas.bounds = pictureView.bounds
     }
 }
 
