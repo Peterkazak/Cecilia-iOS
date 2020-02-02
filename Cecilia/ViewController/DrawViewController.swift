@@ -14,7 +14,7 @@ import ColorThiefSwift
 class DrawViewController: UIViewController {
     
     private var timerView = TimerView()
-    private let canvas = Canvas(frame: CGRect(origin: .zero, size: CANVAS_SIZE))
+    private var canvas = Canvas(frame: CGRect(origin: .zero, size: CANVAS_SIZE))
     private let palette = PaletteView(frame: .zero)
     private let brushSizeSwitch = BrushSizeSwitch(frame: .zero)
     private var brush: Brush?
@@ -144,10 +144,9 @@ extension DrawViewController: SubviewProtocol {
         pictureView.topAnchor.constraint(equalTo: timerView.bottomAnchor, constant: 10.0).isActive = true
         pictureView.bottomAnchor.constraint(equalTo: brushSizeSwitch.topAnchor , constant: -15.0).isActive = true
         
-        self.view.layoutIfNeeded()
-        
         pictureView.insertSubview(canvas, at: 1)
-        canvas.bounds = pictureView.bounds
+        
+        self.view.layoutIfNeeded()
     }
 }
 
