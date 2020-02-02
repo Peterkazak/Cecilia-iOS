@@ -15,6 +15,8 @@ protocol ResultViewControllerDelegate: class {
 
 class ResultViewController: UIViewController {
     
+    private let completedLabel = UILabel()
+    private let pictureView = PictureView()
     private let comparesonView = ImageComparisonView()
     private let newGameButton = UIButton()
     
@@ -31,10 +33,16 @@ class ResultViewController: UIViewController {
     // MARK: - ViewController override methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "bg_01")
         
         collectionViewSetup()
         subviewsSetup()
+        
+        completedLabel.numberOfLines = 1
+        completedLabel.textAlignment = .center
+        completedLabel.text = "COMPLETED!"
+        completedLabel.textColor = UIColor(named: "label_color_01")
+        completedLabel.font = UIFont(name: "ComicSansMS-Bold", size: 36)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -42,9 +50,13 @@ class ResultViewController: UIViewController {
         comparesonView.backgroundColor = .white
         comparesonView.lhs = lhsImage
         comparesonView.rhs = rhsImage
-        
-        newGameButton.setTitle("New game", for: .normal)
-        newGameButton.backgroundColor = .orange
+                
+        let attributedString = NSAttributedString(string: "PLAY!", attributes: [NSAttributedString.Key.font: UIFont(name: "ComicSansMS-Bold", size: 28)!, .foregroundColor : UIColor(named: "label_color_01")!])
+        newGameButton.setAttributedTitle(attributedString, for: .normal)
+        newGameButton.backgroundColor = UIColor(named: "timer_slider")
+        newGameButton.layer.cornerRadius = 20.0
+        newGameButton.layer.borderWidth = 8.0
+        newGameButton.layer.borderColor = UIColor(named: "label_color_01")?.cgColor
         newGameButton.addTarget(self, action: #selector(newGameButtonAction(_:)), for: .touchUpInside)
         
         GameSessionService.shared.getSourceDrawingsBy(id: 1, completion: { (draws) in
@@ -67,26 +79,43 @@ class ResultViewController: UIViewController {
 // MARK: - SubviewProtocol protocol implementation
 extension ResultViewController: SubviewProtocol {
     func subviewsSetup() {
-        view.insertSubview(comparesonView, at: 0)
+        
+        view.insertSubview(completedLabel, at: 0)
+        completedLabel.translatesAutoresizingMaskIntoConstraints = false
+        completedLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0).isActive = true
+        completedLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        completedLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        completedLabel.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
+        
+        view.insertSubview(pictureView, at: 1)
+        pictureView.translatesAutoresizingMaskIntoConstraints = false
+        pictureView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        pictureView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        pictureView.topAnchor.constraint(equalTo: completedLabel.bottomAnchor, constant: 10.0).isActive = true
+//        pictureView.bottomAnchor.constraint(equalTo: collectionView.topAnchor , constant: -200.0).isActive = true
+        pictureView.heightAnchor.constraint(equalToConstant: (SCREEN_HEIGHT/1.8).rounded()).isActive = true
+        
+        pictureView.insertSubview(comparesonView, at: 0)
         comparesonView.translatesAutoresizingMaskIntoConstraints = false
-        comparesonView.widthAnchor.constraint(equalToConstant: SCREEN_WIDTH).isActive = true
-        comparesonView.heightAnchor.constraint(equalToConstant: SCREEN_HEIGHT).isActive = true
-        comparesonView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        comparesonView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        comparesonView.leadingAnchor.constraint(equalTo: pictureView.leadingAnchor, constant: 5.0).isActive = true
+        comparesonView.topAnchor.constraint(equalTo: pictureView.topAnchor, constant: 5.0).isActive = true
+        comparesonView.trailingAnchor.constraint(equalTo: pictureView.trailingAnchor, constant: -5.0).isActive = true
+        comparesonView.bottomAnchor.constraint(equalTo: pictureView.bottomAnchor, constant: -5.0).isActive = true
         
-        view.insertSubview(newGameButton, at: 1)
-        newGameButton.translatesAutoresizingMaskIntoConstraints = false
-        newGameButton.widthAnchor.constraint(equalToConstant: (SCREEN_WIDTH/2).rounded()).isActive = true
-        newGameButton.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
-        newGameButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40.0).isActive = true
-        newGameButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        view.insertSubview(collectionView, at: 2)
+        view.insertSubview(collectionView, at: 0)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.heightAnchor.constraint(equalToConstant: (SCREEN_WIDTH / 2.5).rounded()).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: pictureView.bottomAnchor, constant: 10.0).isActive = true
+
+        view.insertSubview(newGameButton, at: 1)
+        newGameButton.translatesAutoresizingMaskIntoConstraints = false
+        newGameButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        newGameButton.widthAnchor.constraint(equalToConstant: (SCREEN_WIDTH/1.5).rounded()).isActive = true
+        newGameButton.heightAnchor.constraint(equalToConstant: 64.0).isActive = true
+        newGameButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10.0).isActive = true
+        newGameButton.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -10.0).isActive = true
         
         self.view.layoutIfNeeded()
     }

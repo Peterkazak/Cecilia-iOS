@@ -23,7 +23,7 @@ class TimerView: UIView {
         
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.text = "20 сек."
+        label.text = "20 sec."
         label.textColor = UIColor(named: "label_color_01")
         label.font = UIFont(name: "ComicSansMS-Bold", size: 36)
     }
@@ -35,7 +35,7 @@ class TimerView: UIView {
     // MARK: - TimerView methods
     public func updateTimer(value: Int) {
         slider.value = 0.05 * Float(value)
-        label.text = "\(value) сек."
+        label.text = "\(value) sec."
     }
 }
 
