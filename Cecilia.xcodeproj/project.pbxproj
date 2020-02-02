@@ -29,6 +29,9 @@
 		D0EC8A4323E5C0CC00D248D1 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0EC8A4223E5C0CC00D248D1 /* Color.xcassets */; };
 		D0EC8A4623E5C3B000D248D1 /* ComicSansMS-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0EC8A4523E5C3B000D248D1 /* ComicSansMS-Bold.ttf */; };
 		D0EC8A4823E5D01F00D248D1 /* PictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A4723E5D01F00D248D1 /* PictureView.swift */; };
+		D0EC8A4C23E6640400D248D1 /* RandomSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A4B23E6640400D248D1 /* RandomSource.swift */; };
+		D0EC8A4E23E674C800D248D1 /* CommunityDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A4D23E674C800D248D1 /* CommunityDrawing.swift */; };
+		D0EC8A5023E67B6300D248D1 /* CommunityDrawCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC8A4F23E67B6300D248D1 /* CommunityDrawCollectionViewCell.swift */; };
 		DF306C53216292BB8AC230DB /* Pods_Cecilia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF041D4A7F68FBAF604146 /* Pods_Cecilia.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +63,9 @@
 		D0EC8A4223E5C0CC00D248D1 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		D0EC8A4523E5C3B000D248D1 /* ComicSansMS-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ComicSansMS-Bold.ttf"; path = "../../../../../Downloads/ComicSansMS-Bold.ttf"; sourceTree = "<group>"; };
 		D0EC8A4723E5D01F00D248D1 /* PictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureView.swift; sourceTree = "<group>"; };
+		D0EC8A4B23E6640400D248D1 /* RandomSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSource.swift; sourceTree = "<group>"; };
+		D0EC8A4D23E674C800D248D1 /* CommunityDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDrawing.swift; sourceTree = "<group>"; };
+		D0EC8A4F23E67B6300D248D1 /* CommunityDrawCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDrawCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +167,8 @@
 		D0EC8A2423E5123D00D248D1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D0EC8A4B23E6640400D248D1 /* RandomSource.swift */,
+				D0EC8A4D23E674C800D248D1 /* CommunityDrawing.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +178,7 @@
 			children = (
 				D0EC8A2B23E520A300D248D1 /* PaletteView.swift */,
 				D0EC8A2D23E5264300D248D1 /* ColorCollectionViewCell.swift */,
+				D0EC8A4F23E67B6300D248D1 /* CommunityDrawCollectionViewCell.swift */,
 				D0EC8A2F23E55EFA00D248D1 /* Slider.swift */,
 				D0EC8A3623E5904200D248D1 /* ImageComparisonView.swift */,
 				D0EC8A3C23E5B13300D248D1 /* BrushSizeSwitch.swift */,
@@ -327,13 +336,16 @@
 				D0EC8A4823E5D01F00D248D1 /* PictureView.swift in Sources */,
 				D0EC8A3323E56E9500D248D1 /* UIImage.swift in Sources */,
 				D0C47ACE23E47E74003C83EC /* SubviewProtocol.swift in Sources */,
+				D0EC8A4E23E674C800D248D1 /* CommunityDrawing.swift in Sources */,
 				D0EC8A3F23E5B1F200D248D1 /* DrawViewController.swift in Sources */,
 				D0EC8A2823E5140600D248D1 /* GameSessionService.swift in Sources */,
+				D0EC8A4C23E6640400D248D1 /* RandomSource.swift in Sources */,
 				D0EC8A3023E55EFA00D248D1 /* Slider.swift in Sources */,
 				D0A903D323E47359009F62B4 /* AppDelegate.swift in Sources */,
 				D0A903D523E47359009F62B4 /* SceneDelegate.swift in Sources */,
 				D0EC8A3723E5904200D248D1 /* ImageComparisonView.swift in Sources */,
 				D0EC8A2E23E5264300D248D1 /* ColorCollectionViewCell.swift in Sources */,
+				D0EC8A5023E67B6300D248D1 /* CommunityDrawCollectionViewCell.swift in Sources */,
 				D0EC8A2C23E520A300D248D1 /* PaletteView.swift in Sources */,
 				D0EC8A2A23E5143100D248D1 /* AuthService.swift in Sources */,
 				D0EC8A3523E58E2200D248D1 /* ResultViewController.swift in Sources */,

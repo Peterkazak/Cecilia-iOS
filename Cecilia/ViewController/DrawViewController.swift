@@ -31,39 +31,20 @@ class DrawViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(setBrushColor(notification:)), name: NSNotification.Name(rawValue: "setPaletteItem"), object: nil)
         
-        timerSetup()
-        
-        let url = URL(string: "https://www.artsalonholland.nl/uploads/illustraties-groot/1eef1ea5-8e64-4f62-b8de-da8ec1600d27/3012930105/Johannes-vermeer-het-meisje-met-de-parel-art-salon-holland.jpg")!
-        
-        pictureView.pictureImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        pictureView.pictureImageView.sd_setImage(with: url) { (image, error, cache, urls) in
-            if error != nil {
-                self.pictureView.pictureImageView.image = image
-            } else {
-                self.pictureView.pictureImageView.image = image
-                
-                guard let colors = ColorThief.getPalette(from: image!, colorCount: self.palette.colors.count, quality: 1, ignoreWhite: false) else {
-                    return
-                }
-                
-                for i in 0..<7 { self.palette.colors[i] = colors[i].makeUIColor() }
-                
-                self.palette.reloadColors()
-            }
-        }
-        
         canvas.backgroundColor = .clear
+        pictureView.pictureImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        
+        timerSetup()
         
         brushSizeSwitch.addTarget(self, action: #selector(brushSizeSwitchAction(_:)), for: .valueChanged)
         
         subviewsSetup()
         brushSetup()
-        print("0")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.startTimer()
+        self.restartGame()
     }
     
     // MARK: - DrawViewController methods
@@ -83,6 +64,28 @@ class DrawViewController: UIViewController {
             brush!.use()
         } catch {
             print("Error: Can't register brush")
+        }
+    }
+    
+    private func getRandomSource() {
+        GameSessionService.shared.getRandomSource(completion: { (source) in
+            self.pictureView.pictureImageView.sd_setImage(with: URL(string: source.imageUrl)!) { (image, error, cache, urls) in
+                if error != nil {
+                    self.pictureView.pictureImageView.image = image
+                } else {
+                    self.pictureView.pictureImageView.image = image
+                    
+                    guard let colors = ColorThief.getPalette(from: image!, colorCount: self.palette.colors.count, quality: 1, ignoreWhite: false) else {
+                        return
+                    }
+                    
+                    for i in 0..<7 { self.palette.colors[i] = colors[i].makeUIColor() }
+                    
+                    self.palette.reloadColors()
+                }
+            }
+        }) { (error) in
+            print("Error: \(error.localizedDescription)")
         }
     }
     
@@ -112,11 +115,16 @@ class DrawViewController: UIViewController {
     
     private func gameOver() {
         self.stopTimer()
+        let resultImage = UIImage.init(data: UIImage.blendImages(pictureView.pictureImageView.image!, canvas.snapshot()!)!)!
         let viewController = ResultViewController()
         viewController.delegate = self
         viewController.lhsImage = pictureView.pictureImageView.image!
-        viewController.rhsImage = UIImage.init(data: UIImage.blendImages(pictureView.pictureImageView.image!, canvas.snapshot()!)!)!
+        viewController.rhsImage = resultImage
         viewController.modalPresentationStyle = .overFullScreen
+        
+        GameSessionService.shared.storeDrawingBy(id: 1, image: resultImage)
+//        storeDrawing
+        
         present(viewController, animated: true, completion: nil)
     }
         
@@ -186,5 +194,6 @@ extension DrawViewController: ResultViewControllerDelegate {
         self.timerCounter = 20
         self.timerView.updateTimer(value: timerCounter)
         self.startTimer()
+        self.getRandomSource()
     }
 }

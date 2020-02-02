@@ -24,3 +24,8 @@ var SCREEN_HEIGHT: CGFloat {
 var CANVAS_SIZE: CGSize {
     get { return CGSize(width: SCREEN_WIDTH, height: (SCREEN_HEIGHT/1.5).rounded()) }
 }
+
+// MARK: - main url
+var SERVER_URL: String {
+    get { return "http://84.201.136.15:81/api/" }
+}

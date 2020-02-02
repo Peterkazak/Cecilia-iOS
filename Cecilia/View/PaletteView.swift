@@ -109,5 +109,3 @@ extension PaletteView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         return CGSize(width: ColorCollectionViewCell.width, height: ColorCollectionViewCell.height)
     }
 }
-
-
