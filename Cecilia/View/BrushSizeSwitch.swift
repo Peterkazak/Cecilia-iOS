@@ -18,7 +18,6 @@ class BrushSizeSwitch: UISegmentedControl {
     // MARK: - UISegmentedControl override methods
     override init(frame: CGRect) {
         super.init(frame: frame)
-        selectedSegmentIndex = 1
         backgroundColor = .clear
         
         addTarget(self, action: #selector(brushSizeSwitchAction(_:)), for: .valueChanged)
@@ -38,13 +37,14 @@ class BrushSizeSwitch: UISegmentedControl {
         
         for i in 0..<items.count {
             let image = UIImageView(image: items[i])
-            if i == 1 { image.alpha = 0.2 }
+            if i == 2 { image.alpha = 0.2 }
             image.translatesAutoresizingMaskIntoConstraints = false
             image.widthAnchor.constraint(equalToConstant: (SCREEN_WIDTH - 40.0)/3).isActive = true
             stackView.addArrangedSubview(image)
             insertSegment(withTitle: "", at: i, animated: false)
         }
         
+        selectedSegmentIndex = 2
     }
         
     required init?(coder aDecoder: NSCoder) {

@@ -25,6 +25,7 @@ class ResultViewController: UIViewController {
     
     public var lhsImage = UIImage()
     public var rhsImage = UIImage()
+    public var imageId: Int = 1
     
     weak var delegate: ResultViewControllerDelegate?
     
@@ -59,7 +60,7 @@ class ResultViewController: UIViewController {
         newGameButton.layer.borderColor = UIColor(named: "label_color_01")?.cgColor
         newGameButton.addTarget(self, action: #selector(newGameButtonAction(_:)), for: .touchUpInside)
         
-        GameSessionService.shared.getSourceDrawingsBy(id: 1, completion: { (draws) in
+        GameSessionService.shared.getSourceDrawingsBy(id: self.imageId, completion: { (draws) in
             self.communtiyDrawing.removeAll()
             for item in draws { self.communtiyDrawing.append(item) }
             self.collectionView.reloadData()

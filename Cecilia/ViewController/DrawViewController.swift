@@ -20,6 +20,7 @@ class DrawViewController: UIViewController {
     private var brush: Brush?
     
     private let pictureView = PictureView()
+    private var sourceImage: RandomSource!
 
     var timer: DispatchSourceTimer?
     var timerCounter = 20
@@ -69,6 +70,7 @@ class DrawViewController: UIViewController {
     
     private func getRandomSource() {
         GameSessionService.shared.getRandomSource(completion: { (source) in
+            self.sourceImage = source
             self.pictureView.pictureImageView.sd_setImage(with: URL(string: source.imageUrl)!) { (image, error, cache, urls) in
                 if error != nil {
                     self.pictureView.pictureImageView.image = image
@@ -120,10 +122,10 @@ class DrawViewController: UIViewController {
         viewController.delegate = self
         viewController.lhsImage = pictureView.pictureImageView.image!
         viewController.rhsImage = resultImage
+        viewController.imageId = sourceImage.id
         viewController.modalPresentationStyle = .overFullScreen
         
-        GameSessionService.shared.storeDrawingBy(id: 1, image: resultImage)
-//        storeDrawing
+        GameSessionService.shared.storeDrawingBy(id: sourceImage.id, image: resultImage)
         
         present(viewController, animated: true, completion: nil)
     }
