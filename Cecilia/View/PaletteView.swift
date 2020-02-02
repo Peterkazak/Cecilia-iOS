@@ -13,6 +13,7 @@ class PaletteView: UIView {
     public var colors: [UIColor] = []
     private let collectionView: UICollectionView!
     private let flowLayout = UICollectionViewFlowLayout()
+    private var selectIndex: Int = 0
     
     // MARK: - UIView override methods
     override init(frame: CGRect) {
@@ -84,6 +85,7 @@ extension PaletteView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCollectionViewCell.identifier, for: indexPath) as! ColorCollectionViewCell
         cell.backgroundColor = colors[indexPath.row]
+        indexPath.row == selectIndex ? cell.turnOn() : cell.turnOff()
         return cell
     }
     
@@ -93,7 +95,11 @@ extension PaletteView: UICollectionViewDataSource, UICollectionViewDelegate, UIC
     
     // MARK: UICollectionView Delegate methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NotificationCenter.default.post(name: NSNotification.Name("setPaletteItem"), object: nil, userInfo: ["paletteItem" : colors[indexPath.row]])
+        if let _ = collectionView.cellForItem(at: indexPath) as? ColorCollectionViewCell {
+            NotificationCenter.default.post(name: NSNotification.Name("setPaletteItem"), object: nil, userInfo: ["paletteItem" : colors[indexPath.row]])
+            self.selectIndex = indexPath.row
+            self.collectionView.reloadData()
+        }
     }
     
     // MARK: UICollectionViewDelegateFlowLayout Delegate methods

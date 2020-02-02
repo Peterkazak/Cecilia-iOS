@@ -20,11 +20,21 @@ class ColorCollectionViewCell: UICollectionViewCell {
         clipsToBounds = false
         backgroundColor = .white
         layer.cornerRadius = (ColorCollectionViewCell.width/2).rounded()
+        layer.borderWidth = 0.0
+        layer.borderColor = UIColor.black.cgColor
         subviewsSetup()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - ColorCollectionViewCell methods
+    public func turnOn() {
+        layer.borderWidth = 5.0
+    }
+    public func turnOff() {
+        layer.borderWidth = 0.0
     }
 }
 

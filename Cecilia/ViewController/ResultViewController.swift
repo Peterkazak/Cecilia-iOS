@@ -157,7 +157,7 @@ extension ResultViewController: UICollectionViewDataSource, UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommunityDrawCollectionViewCell.identifier, for: indexPath) as! CommunityDrawCollectionViewCell
         let url = URL(string: communtiyDrawing[indexPath.row].imageUrl)!
         cell.draw.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        cell.draw.sd_setImage(with: url, placeholderImage: UIImage(named: "img1"), options: [.continueInBackground], completed: nil)
+        cell.draw.sd_setImage(with: url, placeholderImage: UIImage(named: "puf"), options: [.continueInBackground], completed: nil)
         return cell
     }
     

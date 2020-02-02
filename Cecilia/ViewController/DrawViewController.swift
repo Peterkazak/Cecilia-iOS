@@ -20,6 +20,7 @@ class DrawViewController: UIViewController {
     private var brush: Brush?
     
     private let pictureView = PictureView()
+    private let scratchesImageView = UIImageView()
     private var sourceImage: RandomSource!
 
     var timer: DispatchSourceTimer?
@@ -34,6 +35,10 @@ class DrawViewController: UIViewController {
         
         canvas.backgroundColor = .clear
         pictureView.pictureImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        
+        scratchesImageView.contentMode = .scaleAspectFill
+        scratchesImageView.tintColor = .white
+        scratchesImageView.image = UIImage(named: "damage\(Int.random(in: 0..<3))")
         
         timerSetup()
         
@@ -71,7 +76,7 @@ class DrawViewController: UIViewController {
     private func getRandomSource() {
         GameSessionService.shared.getRandomSource(completion: { (source) in
             self.sourceImage = source
-            self.pictureView.pictureImageView.sd_setImage(with: URL(string: source.imageUrl)!) { (image, error, cache, urls) in
+            self.pictureView.pictureImageView.sd_setImage(with: URL(string: source.imageUrl)!, placeholderImage: UIImage(named: "puf")) { (image, error, cache, urls) in
                 if error != nil {
                     self.pictureView.pictureImageView.image = image
                 } else {
@@ -80,7 +85,7 @@ class DrawViewController: UIViewController {
                     guard let colors = ColorThief.getPalette(from: image!, colorCount: self.palette.colors.count, quality: 1, ignoreWhite: false) else {
                         return
                     }
-                    
+        
                     for i in 0..<7 { self.palette.colors[i] = colors[i].makeUIColor() }
                     
                     self.palette.reloadColors()
@@ -184,7 +189,13 @@ extension DrawViewController: SubviewProtocol {
         pictureView.topAnchor.constraint(equalTo: timerView.bottomAnchor, constant: 10.0).isActive = true
         pictureView.bottomAnchor.constraint(equalTo: brushSizeSwitch.topAnchor , constant: -15.0).isActive = true
         
-        pictureView.insertSubview(canvas, at: 1)
+        pictureView.insertSubview(scratchesImageView, at: 1)
+        scratchesImageView.translatesAutoresizingMaskIntoConstraints = false
+        scratchesImageView.leadingAnchor.constraint(equalTo: pictureView.leadingAnchor).isActive = true
+        scratchesImageView.topAnchor.constraint(equalTo: pictureView.topAnchor).isActive = true
+        scratchesImageView.trailingAnchor.constraint(equalTo: pictureView.trailingAnchor).isActive = true
+        scratchesImageView.bottomAnchor.constraint(equalTo: pictureView.bottomAnchor).isActive = true
+        pictureView.insertSubview(canvas, at: 2)
         
         self.view.layoutIfNeeded()
     }
