@@ -21,7 +21,7 @@ class DrawViewController: UIViewController {
     
     private let pictureView = PictureView()
 
-    var timer = Timer()
+    var timer: DispatchSourceTimer?
     var timerCounter = 20
     
     // MARK: - ViewController override methods
@@ -31,7 +31,7 @@ class DrawViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(setBrushColor(notification:)), name: NSNotification.Name(rawValue: "setPaletteItem"), object: nil)
         
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerCounterHandler), userInfo: nil, repeats: true)
+        timerSetup()
         
         let url = URL(string: "https://www.artsalonholland.nl/uploads/illustraties-groot/1eef1ea5-8e64-4f62-b8de-da8ec1600d27/3012930105/Johannes-vermeer-het-meisje-met-de-parel-art-salon-holland.jpg")!
         
@@ -58,13 +58,12 @@ class DrawViewController: UIViewController {
         
         subviewsSetup()
         brushSetup()
+        print("0")
     }
     
-    
-    @objc func setBrushColor(notification: NSNotification) {
-        if let item = notification.userInfo?["paletteItem"] as? UIColor {
-            self.brush?.color = item
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.startTimer()
     }
     
     // MARK: - DrawViewController methods
@@ -87,7 +86,32 @@ class DrawViewController: UIViewController {
         }
     }
     
+    private func timerSetup() {
+        timer = DispatchSource.makeTimerSource(queue: .main)
+        timer?.schedule(deadline: .now(), repeating: 1.0)
+
+        timer?.setEventHandler { [weak self] in
+            guard let viewController = self else { return }
+            
+            if viewController.timerCounter > 0 {
+                viewController.timerCounter -= 1
+                viewController.timerView.updateTimer(value: self?.timerCounter ?? 0)
+            } else {
+                viewController.gameOver()
+            }
+        }
+    }
+    
+    private func startTimer() {
+        timer?.resume()
+    }
+
+    private func stopTimer() {
+        timer?.suspend()
+    }
+    
     private func gameOver() {
+        self.stopTimer()
         let viewController = ResultViewController()
         viewController.delegate = self
         viewController.lhsImage = pictureView.pictureImageView.image!
@@ -112,6 +136,12 @@ class DrawViewController: UIViewController {
             timerView.updateTimer(value: timerCounter)
         } else {
             gameOver()
+        }
+    }
+    
+    @objc func setBrushColor(notification: NSNotification) {
+        if let item = notification.userInfo?["paletteItem"] as? UIColor {
+            self.brush?.color = item
         }
     }
 }
@@ -153,8 +183,8 @@ extension DrawViewController: SubviewProtocol {
 extension DrawViewController: ResultViewControllerDelegate {
     func restartGame() {
         self.canvas.clear()
-        self.timer.invalidate()
         self.timerCounter = 20
         self.timerView.updateTimer(value: timerCounter)
+        self.startTimer()
     }
 }
